@@ -173,7 +173,7 @@ html[data-theme="dark"] .logo-item.mono:hover img{filter:invert(1)}
 }
 .bubble::after{content:"";position:absolute;left:50%;bottom:-8px;margin-left:-8px;border:8px solid transparent;border-bottom:0;border-top-color:#333}
 .hero__name{font-size:clamp(2.4rem,3.6vw,3.4rem);font-weight:700;line-height:1.1;letter-spacing:-.015em;color:var(--ink)}
-.hero__role{margin-top:22px;font-size:1.05rem;letter-spacing:.01em;font-weight:700;text-transform:uppercase;color:var(--ink)}
+.hero__role{margin-top:18px;font-size:.85rem;letter-spacing:.06em;font-weight:700;text-transform:uppercase;color:var(--ink)}
 .hero__blurb{margin-top:22px;font-size:1.02rem;line-height:1.65;color:var(--muted);max-width:34ch;text-wrap:balance}
 .talk{
   position:relative;display:grid;place-items:center;width:124px;height:124px;margin:30px 0 0 60px;border-radius:50%;
@@ -188,8 +188,8 @@ html[data-theme="dark"] .logo-item.mono:hover img{filter:invert(1)}
 .talk:hover,.talk:focus-visible{transform:scale(1.08);background:rgba(226,76,63,.7)}
 .talk:hover span{background:var(--accent-dark);transform:scale(.94)}
 .hero__photo{
-  justify-self:center;height:min(660px,calc(100vh - 300px));width:auto;max-width:100%;aspect-ratio:5/6;object-fit:cover;
-  border-radius:24px;box-shadow:var(--shadow);
+  justify-self:center;width:min(470px,100%,calc(100vh - 340px));height:auto;aspect-ratio:1/1;object-fit:cover;
+  border-radius:50%;border:6px solid var(--card);box-shadow:var(--shadow);
 }
 .about{
   max-width:1005px;margin:72px auto 24px;padding:44px 28px 40px;
@@ -199,6 +199,31 @@ html[data-theme="dark"] .logo-item.mono:hover img{filter:invert(1)}
 .about .title{padding-top:0}
 .about p{font-size:1.28rem;line-height:1.6;color:var(--muted);max-width:none}
 .about p+p{margin-top:16px}
+
+
+/* ===== Contact form (bottom of home) ===== */
+.contact{
+  max-width:1005px;margin:48px auto 24px;padding:44px 28px 40px;
+  background:var(--panel);border-radius:14px;box-shadow:0 0 40px rgba(0,0,0,.07);
+  transition:background-color .3s ease;
+}
+.contact .title{padding-top:0}
+.contact__note{font-size:1.05rem;color:var(--muted);max-width:56ch;margin-bottom:28px}
+.contact form{display:grid;gap:18px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.contact label{display:block;font-size:.9rem;font-weight:500;color:var(--ink);margin-bottom:6px}
+.contact input[type="text"],.contact input[type="email"],.contact textarea{
+  width:100%;font:inherit;color:var(--ink);background:var(--card);
+  border:2px solid transparent;border-radius:8px;padding:13px 16px;
+  box-shadow:0 1px 6px rgba(0,0,0,.06);
+  transition:border-color .25s ease,background-color .3s ease,box-shadow .25s ease;
+}
+.contact input:focus,.contact textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 4px 14px rgba(226,76,63,.15)}
+.contact textarea{resize:vertical;min-height:150px}
+.contact .btn{justify-self:start}
+.form-status{min-height:1.5em;font-weight:500}
+.form-status.error{color:var(--accent)}
+.form-status.ok{color:#2e8b57}
 
 /* ===== Shelf ===== */
 .empty{color:var(--muted);font-size:1.15rem;max-width:56ch}
@@ -232,7 +257,7 @@ html[data-theme="dark"] .logo-item.mono:hover img{filter:invert(1)}
 /* ===== Responsive ===== */
 @media (max-width:1100px){
   .hero{grid-template-columns:1fr 1fr;gap:28px}
-  .hero__photo{height:auto;width:100%}
+  .hero__photo{width:100%}
   .card{width:calc(100% - 48px);margin-top:24px;padding:28px 20px 48px}
   .site-footer{width:calc(100% - 48px)}
   .site-header{grid-template-columns:auto 1fr;row-gap:22px}
@@ -256,10 +281,12 @@ html[data-theme="dark"] .logo-item.mono:hover img{filter:invert(1)}
   .main-nav a i{font-size:1.4rem}
   .title,.sub-title{font-size:1.8rem}
   .hero{grid-template-columns:1fr;min-height:0;gap:36px}
-  .hero__photo{height:auto;width:100%;max-width:100%}
+  .hero__photo{width:min(320px,100%)}
   .bubble{margin-left:0}
   .talk{margin-left:0}
   .about p{font-size:1.2rem}
+  .field-row{grid-template-columns:1fr}
+  .contact{padding:30px 20px}
   .project__bar{transform:translateY(0)}
 }
 @media (prefers-reduced-motion:reduce){

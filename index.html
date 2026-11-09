@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Muhammad Khan. IT student and web developer</title>
-<meta name="description" content="Muhammad Khan builds secure, responsive web applications, with a growing focus on cybersecurity and IoT.">
-<script>(function(){document.documentElement.classList.add("js");var t=null;try{t=localStorage.getItem("theme")}catch(e){}if(!t){var m=/mk-theme:(light|dark)/.exec(window.name);if(m)t=m[1]}if(!t&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t)})()</script>
+<title>Muhammad Khan. IT undergraduate and cybersecurity enthusiast</title>
+<meta name="description" content="Muhammad Khan is an IT undergraduate and cybersecurity enthusiast who builds secure, responsive web applications.">
+<script>(function(){document.documentElement.classList.add("js");var t=null;try{var m=/[?&]theme=(light|dark)/.exec(location.search);if(m)t=m[1]}catch(e){}if(!t){try{t=localStorage.getItem("theme")}catch(e){}}if(!t){var n=/mk-theme:(light|dark)/.exec(window.name);if(n)t=n[1]}if(t){try{localStorage.setItem("theme",t)}catch(e){}}if(!t&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t)})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,500&display=swap" rel="stylesheet">
@@ -35,17 +35,35 @@
 <div class="hero__text">
 <p class="bubble">It’s me</p>
 <h1 class="hero__name" id="heroName">Muhammad Khan</h1>
-<p class="hero__role">Information Technology student</p>
+<p class="hero__role">IT Undergraduate · Cybersecurity Enthusiast</p>
 <p class="hero__blurb">I build secure, responsive web applications, with a growing focus on cybersecurity and IoT.</p>
-<a class="talk" href="mailto:mkhansethar65@gmail.com" aria-label="Let’s talk. Send me an email."><span>let’s<br>talk</span></a>
+<a class="talk" href="#contact" aria-label="Let’s talk. Go to the contact form."><span>let’s<br>talk</span></a>
 </div>
-<img class="hero__photo" src="assets/images/profile-hero.jpg" alt="Portrait of Muhammad Khan" width="1000" height="1200">
+<img class="hero__photo" src="assets/images/profile-hero.jpg" alt="Portrait of Muhammad Khan" width="900" height="900">
 </section>
 <section class="about reveal" id="about" aria-labelledby="aboutTitle">
 <h2 class="title" id="aboutTitle">About me</h2>
 <div class="title-line" aria-hidden="true"></div>
 <p>I build secure, responsive web applications and intuitive interfaces. I work across web development, graphic design and database management, with a growing focus on cybersecurity and hands-on experience in IoT.</p>
-<p>Outside of code and design, I read tech blogs, play games and watch films and series. I keep up with new technology and I’m always trying new tools and projects, especially in cybersecurity and IoT.</p>
+<p>I’m a 3rd-year Information Technology undergraduate with a strong focus on cybersecurity. I’m drawn to the question behind every secure system: how would someone try to break this, and how do I make sure they can’t?</p>
+  <p>To answer it, I’m building a foundation across networking, databases and development, because real security depends on understanding all three. I practise with tools like Kali Linux, Wireshark and Nmap, and I’m learning to think like an attacker so I can build and defend like an engineer.</p>
+  <p>I’m detail-oriented, curious and always learning, and I’m looking for opportunities to gain hands-on experience and connect with people in the security and tech community.</p>
+</section>
+<section class="contact reveal" id="contact" aria-labelledby="contactTitle">
+<h2 class="title" id="contactTitle">Get in touch</h2>
+<div class="title-line" aria-hidden="true"></div>
+<p class="contact__note">Have a project in mind, or an internship to talk about? Send me a message and I’ll reply by email.</p>
+<form id="contactForm" action="https://formspree.io/f/xaqdjpzn" method="POST">
+<div class="field-row">
+<div><label for="name">Your name</label><input type="text" id="name" name="name" autocomplete="name" required></div>
+<div><label for="email">Your email</label><input type="email" id="email" name="email" autocomplete="email" required></div>
+</div>
+<div><label for="subject">Subject</label><input type="text" id="subject" name="subject" required></div>
+<div><label for="message">Message</label><textarea id="message" name="message" rows="6" required></textarea></div>
+<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
+<button type="submit" class="btn">Send message</button>
+<p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+</form>
 </section>
 </main>
 </div>
