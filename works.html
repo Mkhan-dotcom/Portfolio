@@ -2,17 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 68 36' fill='none' stroke='%23e24c3f' stroke-width='5' stroke-linejoin='miter' stroke-linecap='butt'><path d='M3 33V4l14 17L31 4v29'/><path d='M42 4v29' stroke='%233a3a3a'/><path d='M64 4 45 19M50 16l15 17' stroke='%23e24c3f'/></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Works — Muhammad Khan">
+<meta property="og:description" content="Web applications and projects built by Muhammad Khan, IT undergraduate and cybersecurity enthusiast.">
+<meta property="og:url" content="https://mkhan-dotcom.github.io/Portfolio/works.html">
+<meta property="og:image" content="https://mkhan-dotcom.github.io/Portfolio/assets/images/profile-hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <title>Works. Muhammad Khan</title>
 <meta name="description" content="Web applications built by Muhammad Khan.">
 <script>(function(){document.documentElement.classList.add("js");var t=null;try{var m=/[?&]theme=(light|dark)/.exec(location.search);if(m)t=m[1]}catch(e){}if(!t){try{t=localStorage.getItem("theme")}catch(e){}}if(!t){var n=/mk-theme:(light|dark)/.exec(window.name);if(n)t=n[1]}if(t){try{localStorage.setItem("theme",t)}catch(e){}}if(!t&&window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)t="dark";if(t)document.documentElement.setAttribute("data-theme",t)})()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 <div class="card">
 <header class="site-header">
@@ -23,23 +32,53 @@
 <a class="email" href="mailto:mkhansethar65@gmail.com"><i class="fa-solid fa-envelope" aria-hidden="true"></i>mkhansethar65@gmail.com</a>
 <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch between light and dark mode"><i class="fa-solid fa-sun sun" aria-hidden="true"></i><i class="fa-solid fa-moon moon" aria-hidden="true"></i></button>
 </div>
-<nav class="main-nav" aria-label="Main"><a href="works.html" aria-current="page"><i class="fa-solid fa-file" aria-hidden="true"></i><span>Works</span></a><a href="resume.html"><i class="fa-solid fa-user-tie" aria-hidden="true"></i><span>Resume</span></a><a href="shelf.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Shelf</span></a></nav>
+<nav class="main-nav" aria-label="Main"><a href="works.html" aria-current="page"><i class="fa-solid fa-file" aria-hidden="true"></i><span>Works</span></a><a href="resume.html"><i class="fa-solid fa-microchip" aria-hidden="true"></i><span>Tech</span></a><a href="shelf.html"><i class="fa-solid fa-book" aria-hidden="true"></i><span>Shelf</span></a></nav>
 </header>
 <div class="shell">
 <aside class="social" aria-label="Social links">
 <a href="https://www.linkedin.com/in/mkhan-sethar/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
 <a href="https://github.com/Mkhan-dotcom/" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
 </aside>
-<main class="content">
+<main class="content" id="main-content">
 <h1 class="title reveal">Web Applications</h1><div class="title-line" aria-hidden="true"></div>
 <div class="works-grid"><div class="reveal" style="--d:0ms"><a class="project" href="https://mkhan-dotcom.github.io/Male-Fashion/" target="_blank" rel="noopener" aria-label="Male Fashion, an e-commerce store with a cart, checkout and admin dashboard. Opens in a new tab.">
-<img src="assets/images/male-fashion.jpg" alt="" width="1200" height="547" loading="lazy">
-<span class="project__bar"><span class="project__name">Male Fashion</span><span class="project__go">View project <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span></span>
+<img src="assets/images/male-fashion.jpg" alt="Screenshot of Male Fashion e-commerce store showing product grid" width="1200" height="547" loading="eager">
+<span class="project__bar">
+  <span class="project__info">
+    <span class="project__name">Male Fashion</span>
+    <span class="project__tags"><span class="project__tag">HTML5</span><span class="project__tag">CSS3</span><span class="project__tag">JavaScript</span><span class="project__tag">E-Commerce</span></span>
+  </span>
+  <span class="project__go">View project <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+</span>
 </a></div><div class="reveal" style="--d:140ms"><a class="project" href="https://url-security-checker.vercel.app" target="_blank" rel="noopener" aria-label="URL Security Checker, a web app that checks suspicious links. Opens in a new tab.">
-<img src="assets/images/url-security-checker.jpg" alt="" width="1200" height="547" loading="lazy">
-<span class="project__bar"><span class="project__name">URL Security Checker</span><span class="project__go">View project <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span></span>
-</a></div></div>
-<div class="cta-row reveal"><p>I build with these tools 👉</p><a class="btn" href="resume.html">Tech I use</a></div>
+<img src="assets/images/url-security-checker.jpg" alt="Screenshot of URL Security Checker web application" width="1200" height="547" loading="eager">
+<span class="project__bar">
+  <span class="project__info">
+    <span class="project__name">URL Security Checker</span>
+    <span class="project__tags"><span class="project__tag">Python</span><span class="project__tag">Flask</span><span class="project__tag">Security</span><span class="project__tag">APIs</span></span>
+  </span>
+  <span class="project__go">View project <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+</span>
+</a></div><div class="reveal" style="--d:280ms">
+  <div class="project project--wip" aria-label="More projects coming soon">
+    <div class="project__placeholder">
+      <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+      <span>Security Lab & IoT Projects</span>
+    </div>
+    <span class="project__bar">
+      <span class="project__info">
+        <span class="project__name">In Progress</span>
+        <span class="project__tags"><span class="project__tag">Kali Linux</span><span class="project__tag">Wireshark</span><span class="project__tag">Nmap</span></span>
+      </span>
+      <span class="project__go">Coming soon</span>
+    </span>
+  </div>
+</div></div>
+<div class="cta-row reveal">
+  <p>I build with these tools 👉</p>
+  <a class="btn" href="resume.html">Tech I use</a>
+  <a class="btn btn--ghost" href="https://github.com/Mkhan-dotcom/" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-hidden="true"></i> Explore GitHub</a>
+</div>
 </main>
 </div>
 </div>
@@ -51,6 +90,7 @@
 <p class="footer-copy">© 2026 Muhammad Khan. All rights reserved.</p>
 </footer>
 <button class="to-top" id="toTop" type="button" aria-label="Back to top"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
-<script src="js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js" defer></script>
+<script src="js/main.js" defer></script>
 </body>
 </html>
