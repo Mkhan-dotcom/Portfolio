@@ -54,7 +54,7 @@
 </section>
 <section class="about" id="about" aria-labelledby="aboutTitle">
 <header class="reveal">
-<p class="eyebrow"><span class="eyebrow__num">01</span><span class="eyebrow__rule" aria-hidden="true"></span><span>About</span></p>
+<p class="eyebrow"><span class="eyebrow__num"></span><span class="eyebrow__rule" aria-hidden="true"></span><span>About</span></p>
 <h2 class="sec-title" id="aboutTitle">Behind the <em>terminal</em></h2>
 </header>
 <div class="about__grid">
@@ -73,16 +73,16 @@
 </section>
 <section class="contact" id="contact" aria-labelledby="contactTitle">
 <div class="contact__intro">
-<p class="eyebrow reveal"><span class="eyebrow__num">02</span><span class="eyebrow__rule" aria-hidden="true"></span><span>Contact</span></p>
+<p class="eyebrow reveal"><span class="eyebrow__num"></span><span class="eyebrow__rule" aria-hidden="true"></span><span>Contact</span></p>
 <h2 class="sec-title reveal" id="contactTitle" style="--d:80ms">Get in <em>touch</em></h2>
 <p class="contact__note reveal" style="--d:160ms">Have a project in mind, or an internship to talk about? Send me a message and I'll reply by email.</p>
 <p class="contact__direct reveal" style="--d:240ms"><span class="mono-label">Or write directly</span><span class="direct__row"><a href="mailto:mkhansethar65@gmail.com">mkhansethar65@gmail.com <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a><button type="button" class="copy" id="copyEmail" data-copy="mkhansethar65@gmail.com" aria-label="Copy email address"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span class="copy__txt">Copy</span></button></span><span class="sr-only" id="copyStatus" role="status" aria-live="polite"></span></p>
 <!-- <div class="contact__links reveal" style="--d:320ms"><span class="mono-label">Find me on</span><div class="row"><a class="chip" href="https://www.linkedin.com/in/mkhan-sethar/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin" aria-hidden="true"></i>LinkedIn</a><a class="chip" href="https://github.com/Mkhan-dotcom/" target="_blank" rel="noopener"><i class="fa-brands fa-github" aria-hidden="true"></i>GitHub</a></div></div> -->
 </div>
-<form class="contact__form reveal" style="--d:120ms" id="contactForm" action="https://formspree.io/f/xaqdjpzn" method="POST">
+<form class="contact__form reveal" style="--d:120ms" id="contactForm" action="https://formspree.io/f/xaqdjpzn" method="POST" novalidate>
 <div class="field-row">
 <div class="field"><label for="name">Your name</label><input type="text" id="name" name="name" autocomplete="name" required><span class="field__line" aria-hidden="true"></span></div>
-<div class="field"><label for="email">Your email</label><input type="email" id="email" name="email" autocomplete="email" required><span class="field__line" aria-hidden="true"></span></div>
+<div class="field"><label for="email">Your email</label><input type="email" id="email" name="email" autocomplete="email" autocapitalize="off" spellcheck="false" required><span class="field__line" aria-hidden="true"></span></div>
 </div>
 <div class="field"><label for="subject">Subject</label><input type="text" id="subject" name="subject" required><span class="field__line" aria-hidden="true"></span></div>
 <div class="field"><label for="message">Message</label><textarea id="message" name="message" rows="6" required></textarea><span class="field__line" aria-hidden="true"></span></div>

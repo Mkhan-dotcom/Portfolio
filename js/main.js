@@ -98,14 +98,161 @@ document.querySelectorAll(".logo-item img").forEach(function (img) {
   } catch (e) { console.warn("Progress bar error:", e); }
 })();
 
-/* 5. Contact form (Formspree) */
+/* 5. Contact form (Formspree) with specific, helpful error messages */
 (function () {
   try {
     var form = document.getElementById("contactForm");
     var status = document.getElementById("formStatus");
     if (!form) return;
+    form.setAttribute("novalidate", "");
+
+    var TYPOS = {
+      "gmial.com": "gmail.com", "gmai.com": "gmail.com", "gmal.com": "gmail.com",
+      "gamil.com": "gmail.com", "gnail.com": "gmail.com", "gmail.con": "gmail.com",
+      "gmail.cm": "gmail.com", "hotmial.com": "hotmail.com", "hotmal.com": "hotmail.com",
+      "yaho.com": "yahoo.com", "yahooo.com": "yahoo.com",
+      "outlok.com": "outlook.com", "outllook.com": "outlook.com"
+    };
+
+    var soft = false; // true when the error is only "not finished typing yet"
+    function emailError(raw) {
+      soft = false;
+      function unfinished(m) { soft = true; return m; }
+      var v = raw.trim();
+      if (!v) return "Please enter your email address.";
+      if (/\s/.test(v)) return "An email address can't contain spaces.";
+      var parts = v.split("@");
+      if (parts.length === 1) return unfinished("Missing \u201C@\u201D. An email looks like name@example.com.");
+      if (parts.length > 2) return "An email address can only contain one \u201C@\u201D.";
+      var local = parts[0], domain = parts[1];
+      if (!local) return "Add something before the \u201C@\u201D (like name@example.com).";
+      if (local.charAt(0) === ".") return "The part before \u201C@\u201D can't start with a dot.";
+      if (local.charAt(local.length - 1) === ".") return "The part before \u201C@\u201D can't end with a dot. Remove the \u201C.\u201D after \u201C" + local.slice(0, -1) + "\u201D.";
+      if (local.indexOf("..") > -1) return "The part before \u201C@\u201D can't have two dots in a row.";
+      var badLocal = local.match(/[^A-Za-z0-9.!#$%&'*+\/=?^_`{|}~-]/);
+      if (badLocal) return "\u201C" + badLocal[0] + "\u201D isn't allowed before the \u201C@\u201D.";
+      if (!domain) return unfinished("Add the domain after the \u201C@\u201D (like " + local + "@gmail.com).");
+      var badDomain = domain.match(/[^A-Za-z0-9.-]/);
+      if (badDomain) return "\u201C" + badDomain[0] + "\u201D isn't allowed in the domain after the \u201C@\u201D.";
+      if (domain.indexOf(".") === -1) return unfinished("The domain after the \u201C@\u201D needs a dot, like \u201Cgmail.com\u201D.");
+      var labels = domain.split(".");
+      for (var i = 0; i < labels.length; i++) {
+        var last = i === labels.length - 1, lab = labels[i];
+        if (!lab) { var m1 = "The domain after the \u201C@\u201D has a misplaced dot."; return last ? unfinished(m1) : m1; }
+        if (lab.charAt(0) === "-" || lab.charAt(lab.length - 1) === "-") {
+          var m2 = "Parts of the domain can't start or end with a hyphen."; return last ? unfinished(m2) : m2;
+        }
+      }
+      var tld = labels[labels.length - 1];
+      if (!/^([A-Za-z]{2,}|xn--[A-Za-z0-9-]+)$/.test(tld)) return unfinished("The ending of the domain (like \u201C.com\u201D) isn't valid.");
+      var fix = TYPOS[domain.toLowerCase()];
+      if (fix) return "Did you mean \u201C" + local + "@" + fix + "\u201D?";
+      return "";
+    }
+
+    var rules = {
+      name: function (v) { return v.trim() ? "" : "Please enter your name."; },
+      email: emailError,
+      subject: function (v) { return v.trim() ? "" : "Please add a subject."; },
+      message: function (v) { return v.trim() ? "" : "Please write a message."; }
+    };
+
+    function setError(input, msg) {
+      var field = input.closest(".field");
+      var err = field.querySelector(".field__err");
+      if (!err) {
+        err = document.createElement("p");
+        err.className = "field__err";
+        err.id = "err-" + input.id;
+        err.setAttribute("role", "alert");
+        field.appendChild(err);
+      }
+      if (msg) {
+        err.textContent = msg;
+        field.classList.add("is-invalid");
+        input.setAttribute("aria-invalid", "true");
+        input.setAttribute("aria-describedby", err.id);
+      } else {
+        err.textContent = "";
+        field.classList.remove("is-invalid");
+        input.removeAttribute("aria-invalid");
+        input.removeAttribute("aria-describedby");
+      }
+    }
+    function check(input, live) {
+      var msg = rules[input.name](input.value);
+      if (live && msg && soft) { clearField(input); return false; } // still typing: stay quiet
+      setError(input, msg);
+      input.closest(".field").classList.toggle("is-valid", !msg && !!input.value.trim());
+      return !msg;
+    }
+    function clearField(input) {
+      setError(input, "");
+      input.closest(".field").classList.remove("is-valid");
+    }
+
+    Object.keys(rules).forEach(function (n) {
+      var input = form.elements[n];
+      if (!input) return;
+      input.addEventListener("blur", function () {
+        if (input.value.trim() || input.closest(".field").classList.contains("is-invalid")) check(input);
+      });
+      var timer;
+      input.addEventListener("input", function () {
+        clearTimeout(timer);
+        var field = input.closest(".field");
+        field.classList.remove("is-valid");
+        if (!input.value.trim() && !field.classList.contains("is-invalid")) return;
+        if (!rules[input.name](input.value)) { check(input, true); return; }      // fixed: clear error + show tick instantly
+        if (field.classList.contains("is-invalid")) { check(input, true); return; } // already showing: update message instantly
+        if (input.name === "email") timer = setTimeout(function () { check(input, true); }, 350); // real-time: flag definite mistakes right after a short pause
+      });
+    });
+
+    function serverError(code, data) {
+      var first = null, shown = 0, general = [];
+      var list = (data && data.errors) || [];
+      list.forEach(function (er) {
+        var input = er.field && rules[er.field] ? form.elements[er.field] : null;
+        if (input) {
+          var msg = er.code === "TYPE_EMAIL"
+            ? "The mail service says this email address isn't valid. Please check it for typos (like name@gmail.com)."
+            : er.code === "REQUIRED_FIELD" ? "This field is required."
+            : er.message ? "The mail service says: " + er.message + "." : "This value was rejected.";
+          setError(input, msg);
+          shown++;
+          if (!first) first = input;
+        } else if (er.message) { general.push(er.message); }
+      });
+      if (data && data.error) general.push(data.error);
+      status.className = "form-status error";
+      if (shown) {
+        status.textContent = "Please fix the highlighted " + (shown > 1 ? "fields" : "field") + " and send again.";
+        first.focus();
+      } else if (code === 429) {
+        status.textContent = "Too many messages in a short time. Please wait a minute and try again.";
+      } else if (code >= 500) {
+        status.textContent = "The mail service had a problem (error " + code + "). Please try again in a moment, or email me directly.";
+      } else if (general.length) {
+        status.textContent = "The message couldn't be sent: " + general[0] + (/[.!?]$/.test(general[0]) ? "" : ".") + " You can also email me directly.";
+      } else {
+        status.textContent = "The message couldn't be sent (error " + code + "). Please try again, or email me directly.";
+      }
+    }
+
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
+      var firstBad = null;
+      Object.keys(rules).forEach(function (n) {
+        var input = form.elements[n];
+        if (input && !check(input) && !firstBad) firstBad = input;
+      });
+      if (firstBad) {
+        status.className = "form-status";
+        status.textContent = "";
+        firstBad.focus();
+        return;
+      }
       status.className = "form-status";
       status.textContent = "Sending message...";
       var sendBtn = form.querySelector(".send");
@@ -117,13 +264,16 @@ document.querySelectorAll(".logo-item img").forEach(function (img) {
           body: new FormData(form),
           headers: { Accept: "application/json" }
         });
-        if (!res.ok) throw new Error("Request failed");
+        var data = null;
+        try { data = await res.json(); } catch (x) {}
+        if (!res.ok) { serverError(res.status, data); return; }
         form.reset();
+        Object.keys(rules).forEach(function (n) { if (form.elements[n]) clearField(form.elements[n]); });
         status.className = "form-status ok";
         status.textContent = "Message sent. I'll get back to you soon.";
       } catch (err) {
         status.className = "form-status error";
-        status.textContent = "The message didn't send. Please try again, or email me directly.";
+        status.textContent = "Couldn't reach the mail service. Check your internet connection and try again, or email me directly.";
       } finally {
         var b = form.querySelector(".send");
         if (b) b.disabled = false;

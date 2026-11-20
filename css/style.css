@@ -414,6 +414,17 @@ html[data-theme="dark"] .about,html[data-theme="dark"] .contact{--coral:#e24c3f;
 .chip i{font-size:1.05rem}
 .chip:hover,.chip:focus-visible{transform:translateY(-2px);border-color:var(--coral);background:var(--coral-soft);color:var(--coral-text)}
 
+/* Field-level validation errors */
+.field__err{display:none;margin-top:8px;font-size:.84rem;font-weight:500;line-height:1.45;color:var(--bad)}
+.field.is-invalid .field__err{display:block;animation:status-in .3s var(--ease-out) both}
+.field.is-invalid .field__err::before{content:"!\00a0";font-weight:700}
+.field.is-invalid label{color:var(--bad)}
+.field.is-invalid input,.field.is-invalid textarea{border-bottom:2px solid var(--bad)}
+.field.is-invalid .field__line{display:none}
+
+.field.is-valid label::after{content:"\00a0\2713";color:var(--ok)}
+.field.is-valid input{border-bottom-color:var(--ok)}
+
 /* ===== Reduced motion ===== */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{
