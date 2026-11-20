@@ -108,6 +108,9 @@ document.querySelectorAll(".logo-item img").forEach(function (img) {
       e.preventDefault();
       status.className = "form-status";
       status.textContent = "Sending message...";
+      var sendBtn = form.querySelector(".send");
+      if (sendBtn) sendBtn.disabled = true;
+      form.classList.add("is-sending");
       try {
         var res = await fetch(form.getAttribute("action"), {
           method: "POST",
@@ -121,6 +124,10 @@ document.querySelectorAll(".logo-item img").forEach(function (img) {
       } catch (err) {
         status.className = "form-status error";
         status.textContent = "The message didn't send. Please try again, or email me directly.";
+      } finally {
+        var b = form.querySelector(".send");
+        if (b) b.disabled = false;
+        form.classList.remove("is-sending");
       }
     });
   } catch (e) { console.warn("Contact form error:", e); }
@@ -335,4 +342,39 @@ document.querySelectorAll(".logo-item img").forEach(function (img) {
     console.log("%c> Looking for internships / collaborations? Reach out: mkhansethar65@gmail.com", cMuted);
     console.log("%c> Security policy: /.well-known/security.txt", cGreen);
   } catch (e) {}
+})();
+
+
+/* 7. Copy email */
+(function () {
+  try {
+    var btn = document.getElementById("copyEmail");
+    var live = document.getElementById("copyStatus");
+    if (!btn) return;
+    var txt = btn.querySelector(".copy__txt");
+    function done() {
+      btn.classList.add("is-done");
+      if (txt) txt.textContent = "Copied!";
+      if (live) live.textContent = "Email address copied to clipboard";
+      setTimeout(function () {
+        btn.classList.remove("is-done");
+        if (txt) txt.textContent = "Copy";
+        if (live) live.textContent = "";
+      }, 2000);
+    }
+    function fallback(v) {
+      var ta = document.createElement("textarea");
+      ta.value = v; ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+    btn.addEventListener("click", function () {
+      var v = btn.getAttribute("data-copy");
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(v).then(done, function () { fallback(v); });
+      } else { fallback(v); }
+    });
+  } catch (e) { console.warn("Copy email error:", e); }
 })();
